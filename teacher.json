@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Sapna Verma",
+    "age": "23",
+    "dateOfBirth": "2000-07-07",
+    "subject_taught": "4"
+  },
+  {
+    "name": "Akshay Raj Singh",
+    "age": "24",
+    "dateOfBirth": "2000-01-07",
+    "subject_taught": "2"
+  },
+  {
+    "name": "Ramesh Sahu",
+    "age": "23",
+    "dateOfBirth": "20000-03-30",
+    "subject_taught": "3"
+  },
+  {
+    "name": "Sandhya Verma",
+    "age": "22",
+    "dateOfBirth": "2002-04-02",
+    "subject_taught": "2"
+  }
+]
