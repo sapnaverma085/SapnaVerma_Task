@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Management</title>
+</head>
+
+
+    <style> 
+    body{
+        background-color: #f5d6f1;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        text-transform: capitalize;
+    
+    }
+    
+    h1 {
+            background-color: #2d0a34;
+    color: #e6dfe7;
+    text-align: center;
+    border-radius: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+
+    }
+    #addteacher {
+    background-color: #d67de7; /* Light blue background color */
+    padding: 5px;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(129, 125, 125, 0.1);
+}
+
+#addteacher input {
+    margin-bottom: 5px;
+    padding: 4px;
+    font-size: 15px;
+    width: 18%;
+    height: 20px;
+    background-color: #e6bee2;
+    border-radius: 10px;
+}
+
+
+.container{
+    display: flex;
+    width: 100%;
+    background-color: #edbaf9;
+    border-radius: 7px;
+}
+#addteacher button {
+    background-color: #72226a; /* Blue button color */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    height: 30px;
+    align-self: center;
+    margin-top: 5px;
+    padding: 6px 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-left: 2px;
+    font-size: 14px;
+  
+}
+
+
+button[name="delete"] {
+    background-color: #400436;
+    color: white;
+}
+
+        table { 
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+            border-collapse: collapse; 
+            
+            width: 100%; 
+            
+        } 
+  
+        td, 
+        th { 
+            border-radius: 10px;
+            border: 1px solid #dddddd; 
+            text-align: left; 
+            padding: 8px; 
+            text-align: center;
+        } 
+  
+        tr:nth-child(even) { 
+            background-color: #94208e; 
+        } 
+    </style>  
+  
+<body> 
+    
+  
+    <form id="addteacher" action="/" method="post"> 
+        <h1>Add new teacher</h1>
+        <input type="text" placeholder="Enter Full Name" name="name" required> 
+        <input type="number" placeholder="Enter Age" name="age" required> 
+        <input type="date" placeholder="Enter Date of Birth" name="dateOfBirth" required> 
+        <input type="number" placeholder="Enter no.of subject taught by he/she" name="subject_taught" required> 
+        <br>
+        <button type="submit" style="padding: 6px 20px;">Add</button> 
+    </form> 
+    <br>
+    <div class="container">
+    <form id ="addteacher" action="/search" method="post" style="margin-right: 20px ;">
+       
+        <input type="text" placeholder="Search for teacher name" name="name" style="width: 300px;">
+        <button type="submit">Search</button>
+   
+    
+    
+    <% if (typeof showAlert !== 'undefined' && showAlert) { %>
+        <div style="color: red; font-weight: bold; margin-right: 20px;">Teacher not found</div>
+    <% } %>
+</form>
+    
+    <br>
+     <form id="addteacher" action="/filter" method="post" style="margin-right: 20px;">
+        <label class="label">Filter by:</label>
+        <select id="filterby" name="filterby" style="background-color: #e6bee2; border-radius: 8px; height: 30px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            <option value="Age">Age </option>
+            <option value="Age below 50">Age below 50</option>
+            <option value="Age above 50">Age above 50</option>
+            <option value="subjectTaught">Subject Taught</option>
+        </select>
+        <button type="submit">Apply Filter</button>
+    </form>
+    <br>
+    <form id="addteacher" action="/avg" method="get">
+        <button type="submit">Calculate Average No of classes</button>
+    </form>
+   
+      <p style="margin-left: 20px; color: #2d0a34;">
+        <% if (typeof avgsub !== 'undefined') { %>
+          Average classes: <%= avgsub %>
+        <% } else if (typeof error !== 'undefined') { %>
+          <%= error %>
+        <% } %>
+      </p>
+   
+    </div>
+    
+    
+    
+    <table id="addteacher"> 
+        <h1>Total Teachers</h1> 
+        <tr> 
+            <th>Name</th> 
+            <th>Age</th> 
+            <th>Date of Birth</th> 
+            <th>No.of subjects taught</th> 
+            <th>Update</th> 
+            <th>Delete</th> 
+        </tr> 
+        <% data.forEach(teacher => { %> 
+            <tr> 
+                <td><%= teacher.name %></td> 
+                <td><%= teacher.age %></td> 
+                <td><%= teacher.dateOfBirth %></td> 
+                <td>  <%=teacher.subject_taught %></td> 
+                <td> 
+                    <form action="/update" method="post" > 
+                        <input type="text" style="display: none;" 
+                            name="name" value="<%= teacher.name %>">
+                       
+                        <input type="text" name="newname" placeholder="Enter name" required>
+                        <input type="number" name="newage"placeholder=" enter age" required>
+                        <input type="date" name="newdob" placeholder="enter date of birth" required> 
+                        <input type="number" name="newsubject" placeholder="enter subject taught" required>   
+                        <button type="submit">Update</button> 
+                    </form> 
+                </td> 
+                <td> 
+                    <form action="/delete" method="post"> 
+                         <input type="text" style="display: none;" 
+                            name="name" value="<%= teacher.name %>"> 
+                        <button type="submit" style="background-color: rgb(96, 8, 61);">Delete</button>  
+                         
+                        </form>  
+                        
+                </td> 
+            </tr>   
+        <% }); %> 
+    </table> 
+  
+   
+
+   
+
+</body> 
+  
+</html>
