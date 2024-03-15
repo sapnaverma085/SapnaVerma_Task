@@ -17,6 +17,12 @@
     "dateOfBirth": "20000-03-30",
     "subject_taught": "3"
   },
+   {
+    "name": "Shivank Gupta",
+    "age": "23",
+    "dateOfBirth": "2000-06-05",
+    "subject_taught": "3"
+  },
   {
     "name": "Sandhya Verma",
     "age": "22",
