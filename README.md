@@ -1,8 +1,5 @@
 # SapnaVerma_Task
 A Node.js and Express.js-based Teacher Management System for adding, updating, and deleting teacher records with JSON file storage and real-time UI updates.
-Certainly! Below is a simple README.md for your project:
-
----
 
 # Teacher Management System
 
